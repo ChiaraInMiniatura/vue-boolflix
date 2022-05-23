@@ -12,7 +12,15 @@
       </div> -->
       <h2> Titolo: {{item.title}}</h2>
       <h3> Titolo originale: {{item.original_title}}</h3>
-      <p> Lingua: {{item.original_language}}</p>
+       <div v-if="item.original_language == 'en'">
+          <img class="bandiera" src="../assets/img/bandiera-ing.png" alt="bandiera">
+        </div>
+        <div v-else-if="item.original_language == 'it'">
+          <img class="bandiera" src="../assets/img/bandiera-it.png" alt="bandiera it">
+        </div>
+        <div v-else>
+          <p> Lingua: {{item.original_language}}</p>
+        </div>
       <p> Voti: {{item.vote_count}}</p>
 
     </div>
@@ -31,7 +39,17 @@
       </div> -->
       <h2> Titolo: {{item.name}}</h2>
       <h3> Titolo originale: {{item.original_name}}</h3>
-      <p> Lingua: {{item.original_language}}</p>
+
+        <div v-if="item.original_language == 'en'">
+          <img class="bandiera" src="../assets/img/bandiera-ing.png" alt="bandiera">
+        </div>
+        <div v-else-if="item.original_language == 'it'">
+          <img class="bandiera" src="../assets/img/bandiera-it.png" alt="bandiera it">
+        </div>
+        <div v-else>
+          <p> Lingua: {{item.original_language}}</p>
+        </div>
+             
       <p> Voti: {{item.vote_count}}</p>
 
     </div>
@@ -67,6 +85,9 @@ props: {
     }
     .img-film{
       width: 80%;
+    }
+    .bandiera{
+      width: 30px;
     }
   
   }
