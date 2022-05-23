@@ -33,7 +33,6 @@ export default {
 
 header{
   height: 100px;
-  background-color: black;
   display: flex;
   justify-content: space-between;
   align-items: center;

@@ -7,9 +7,9 @@
     v-for="(item,index) in film" :key="`card-film${index}`"
     class="card-film">
 
-      <!-- <div class="img-film">
-        <img :src="item.poster_path" :alt="item.title">
-      </div> -->
+      <div class="img-film">
+        <img :src= "`https://image.tmdb.org/t/p/original/${item.backdrop_path}`" :alt="item.title">
+      </div>
       <h2> Titolo: {{item.title}}</h2>
       <h3> Titolo originale: {{item.original_title}}</h3>
        <div v-if="item.original_language == 'en'">
@@ -27,16 +27,16 @@
 
   </div>
 
-    <h1>Seriet Tv</h1>
+    <h1>Serie Tv</h1>
   <div class="cg-container">
 
     <div
     v-for="(item,index) in serie" :key="`card-tv${index}`"
     class="card-film">
 
-      <!-- <div class="img-film">
-        <img :src="item.poster_path" :alt="item.title">
-      </div> -->
+      <div class="img-film">
+        <img :src= "`https://image.tmdb.org/t/p/original/${item.backdrop_path}`" :alt="item.title">
+      </div>
       <h2> Titolo: {{item.name}}</h2>
       <h3> Titolo originale: {{item.original_name}}</h3>
 
@@ -72,16 +72,28 @@ props: {
 
 <style lang="scss" scoped>
 @import "../assets/style/global";
-
+  main{
+    color: white;
+    padding:20px;
+    h1{
+      margin: 15px;
+    }
+  }
   .cg-container{
     width: 90%;
     margin: auto;
     display: flex;
     flex-wrap: wrap;
     .card-film{
-    width: calc(100% / 5 - 10px);
+    width: calc(100% /4 - 20px);
+    background-color:rgb(63, 62, 62) ;
+    padding: 10px;
     border: 1px solid black;
+    margin: 10px;
     min-height: 200px;
+    h2, h3, p, img{
+      margin-bottom:15px ;
+    }
     }
     .img-film{
       width: 80%;

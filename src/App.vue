@@ -64,7 +64,7 @@ export default {
   // mounted(){
   //   this.getApi(),
   //   this.getApiTv()
-  // },
+  // }, 
   computed:{
     SearchedMovie(){
       let movieSearched = this.output.data.results;
@@ -76,10 +76,14 @@ export default {
       console.log("serie cercate",tvSearched);
       return tvSearched
     }
-  }
+  } 
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+div{
+  min-height: 100vh;
+  background: linear-gradient(black,rgb(44, 44, 44));
+}
 
 </style>
