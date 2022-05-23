@@ -8,7 +8,7 @@
   <div>
     <input
     @keyup.enter="$emit('search', searchInput)"
-    v-model="searchInput"
+    v-model.trim="searchInput"
     type="text" placeholder="Cerca film o serie Tv">
   </div>
 
