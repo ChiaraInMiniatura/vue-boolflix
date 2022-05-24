@@ -5,10 +5,10 @@
   <div class="cg-container">
     <div
     v-for="(item,index) in film" :key="`card-film${index}`"
-    class="card-film">
+    class="card">
 
       <div class="img-film">
-        <img :src= "`https://image.tmdb.org/t/p/original/${item.backdrop_path}`" :alt="item.title">
+        <img :src= "`https://image.tmdb.org/t/p/original/${item.backdrop_path}`" alt="immagine non disponibile">
       </div>
       <h2> Titolo: {{item.title}}</h2>
       <h3> Titolo originale: {{item.original_title}}</h3>
@@ -21,7 +21,28 @@
         <div v-else>
           <p> Lingua: {{item.original_language}}</p>
         </div>
-      <p> Voti: {{item.vote_count}}</p>
+        
+        <span>Voto: {{item.vote_average}}</span>
+            
+            <div class="stars" v-if="parseInt(item.vote_average)/2 > 4">
+             <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+
+            <div class="stars" v-else-if="parseInt(item.vote_average)/2 > 3"> 
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i> 
+            </div>
+            <div class="stars" v-else-if="parseInt(item.vote_average)/2 > 2">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i> 
+            </div>
+            <div class="stars" v-else-if="parseInt(item.vote_average)/2 > 1">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i> 
+            </div>
+            <div class="stars" v-else-if="parseInt(item.vote_average)/2 > 0">
+             <i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i> 
+            </div>
+            <div class="stars" v-else-if="parseInt(item.vote_average)/2 == 0">
+             <i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i> 
+            </div>
 
     </div>
 
@@ -32,10 +53,10 @@
 
     <div
     v-for="(item,index) in serie" :key="`card-tv${index}`"
-    class="card-film">
+    class="card">
 
       <div class="img-film">
-        <img :src= "`https://image.tmdb.org/t/p/original/${item.backdrop_path}`" :alt="item.title">
+        <img :src= "`https://image.tmdb.org/t/p/original/${item.backdrop_path}`" alt="immagine non disponibile">
       </div>
       <h2> Titolo: {{item.name}}</h2>
       <h3> Titolo originale: {{item.original_name}}</h3>
@@ -49,8 +70,36 @@
         <div v-else>
           <p> Lingua: {{item.original_language}}</p>
         </div>
-             
-      <p> Voti: {{item.vote_count}}</p>
+          
+          <!-- ciclo per stelle che non funziona -->
+          <!-- <div v-for="star in stars" :key="star">
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <div v-for="star in (5 - stars)" :key="star" >
+            <i class="fa-regular fa-star"></i>
+          </div> -->
+      
+      <span>Voto: {{item.vote_average}}</span>
+            
+            <div class="stars" v-if="parseInt(item.vote_average)/2 > 4">
+             <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+
+            <div class="stars" v-else-if="parseInt(item.vote_average)/2 > 3"> 
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i> 
+            </div>
+            <div class="stars" v-else-if="parseInt(item.vote_average)/2 > 2">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i> 
+            </div>
+            <div class="stars" v-else-if="parseInt(item.vote_average)/2 > 1">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i> 
+            </div>
+            <div class="stars" v-else-if="parseInt(item.vote_average)/2 > 0">
+             <i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i> 
+            </div>
+            <div class="stars" v-else-if="parseInt(item.vote_average)/2 == 0">
+             <i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i> 
+            </div>
 
     </div>
 
@@ -60,14 +109,23 @@
 </template>
 
 <script>
-export default {
+
+export default{
 name: "MainComponent",
 props: {
-    film: Array,
-    serie: Array,
-  }
-
+    film: Object,
+    serie: Object,
+  },
+  // funzione per stelle che non funziona
+  // methods: {
+  //   stars() {
+  //     let numStelle = Math.ceil(this.serie.vote_average / 2)
+  //     return numStelle 
+  // },
+  
+  // }
 }
+
 </script>
 
 <style lang="scss" scoped>
@@ -84,7 +142,7 @@ props: {
     margin: auto;
     display: flex;
     flex-wrap: wrap;
-    .card-film{
+    .card{
     width: calc(100% /4 - 20px);
     background-color:rgb(63, 62, 62) ;
     padding: 10px;
